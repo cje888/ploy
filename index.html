@@ -113,6 +113,11 @@
   .soc .t b{font-weight:600;font-size:.98rem;white-space:nowrap}
   .soc .t span{color:var(--muted);font-size:.85rem}
   .soc .go{color:var(--muted)}
+  .socials.three{grid-template-columns:repeat(3,1fr)}
+  .socials.three .soc:last-child:nth-child(odd){grid-column:auto}
+  .socials.three .soc{flex-direction:column;justify-content:center;gap:10px;padding:14px 4px 12px;text-align:center}
+  .socials.three .soc .ico3d{width:54px;height:54px;border-radius:17px}
+  .socials.three .soc .t b{font-size:.84rem;white-space:nowrap}
 
   .biz{display:grid;gap:12px}
   .bz{position:relative;display:flex;align-items:center;gap:16px;padding:18px;border-radius:24px;text-decoration:none;color:var(--ink);overflow:hidden;transition:transform .2s}
@@ -172,7 +177,7 @@
 
   <section class="in" style="animation-delay:.06s">
     <h2>Contact me</h2>
-    <div class="socials glass" id="contacts"></div>
+    <div class="socials three glass" id="contacts"></div>
   </section>
 
   <section class="in" style="animation-delay:.1s">
@@ -206,7 +211,7 @@ const ME = {
   first: "Saiyud", last: "Uamsue", nick: "Ploy",
   phone: '',
   whatsapp: '',
-  email: '',
+  line: '',
   socials: [
     { name:"Instagram", url:'https://www.instagram.com/saiyuduamsa/', cls:"i-ig", icon:"ig" },
     { name:"TikTok",    url:'https://www.tiktok.com/@user5617497541013', cls:"i-tt", icon:"tt" },
@@ -235,9 +240,9 @@ const svg = (k,s) => '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill
 /* links */
 
 const CONTACTS = [
-  { name:"WhatsApp", url:ME.whatsapp ? "https://wa.me/" + ME.whatsapp : "", cls:"i-wa", icon:"wa" },
-  { name:"Call me",  url:ME.phone ? "tel:" + ME.phone : "",                 cls:"i-phone", icon:"phone" },
-  { name:"Email me", url:ME.email ? "mailto:" + ME.email : "",              cls:"i-mail", icon:"mail", logo:"gm" }
+  { name:"LINE",        url:ME.line,                                          cls:"i-line",  icon:"line" },
+  { name:"Call me",     url:ME.phone ? "tel:" + ME.phone : "",               cls:"i-phone", icon:"phone" },
+  { name:"WhatsApp me", url:ME.whatsapp ? "https://wa.me/" + ME.whatsapp : "", cls:"i-wa",    icon:"wa" }
 ];
 function row(s){
   let a;
@@ -296,7 +301,7 @@ document.getElementById("save").addEventListener("click", () => {
     "N:"+ME.last+";"+ME.first+";;;","FN:"+ME.first+" "+ME.last,
     "NICKNAME:"+ME.nick,
     ME.phone ? "TEL;TYPE=CELL:"+ME.phone : "",
-    ME.email ? "EMAIL;TYPE=INTERNET:"+ME.email : "",
+
     "URL:"+location.href.split("#")[0],
     "END:VCARD"].filter(Boolean).join("\r\n");
   const a = document.createElement("a");
